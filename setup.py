@@ -6,5 +6,4 @@ setuptools.setup(name='fcdataikuapi',
     description='FrieslandCampina-specific dataiku management API',
     url='https://github.com/YouriFC/fcdataikuapi',
     author="Youri Immerzeel",
-    author_email='youri.immerzeel@frieslandcampina.com', 
-    install_requires=['dataiku'])
+    author_email='youri.immerzeel@frieslandcampina.com')
