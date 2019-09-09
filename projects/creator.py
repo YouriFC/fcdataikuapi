@@ -12,12 +12,15 @@ class ProjectCreator:
 
     def __init__(self, gds_name, devops_team):
         #client object for this class to use
-        self.client = dataiku.api_client()
+        self.__client = dataiku.api_client()
    
 
         #Validate user is allowed to do this
-        self.gds_name, self.devops_team = ProjectValidator(self.client, gds_name, devops_team)
+        self.gds_name, self.devops_team = ProjectValidator(self.__client, gds_name, devops_team)
         
 
-    def create(self):
-        print(self.gds_name)
+    def create(self, project_key, project_name):
+        '''
+        Create a new DataIKU project. 
+        '''
+        new_project = self.__client.create_project(project_key, project_name, owner=self.gds_name)

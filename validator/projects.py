@@ -9,6 +9,6 @@ def ProjectValidator(dataiku_client, gds_name, devops_team):
     #Group stuff
     grouplist = dataiku_client.list_groups()
     assert(devops_team in [x['name'] for x in grouplist]), "DevOps Team does not exist"
-    assert(devops_team + "_lead" in userinfo['group'])
+    assert(devops_team + "_lead" in userinfo['groups'])
 
     return(gds_name, devops_team)
