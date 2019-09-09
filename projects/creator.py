@@ -1,5 +1,6 @@
 import dataiku 
-import operator
+
+from validator.projects import ProjectValidator
 
 class ProjectCreator:
     '''
@@ -10,15 +11,7 @@ class ProjectCreator:
 
     def __init__(self,gds_name):
         self.client = dataiku.api_client()
-        self.gds_name = gds_name
-
-        gds_name = property(operator.attrgetter('_gds_name'))
-
-        @gds_name.setter
-        def gds_name(self, gdn):
-            userlist = self.client.list_users()
-            assert(gdn.lower() in [x['login'].lower() for x in userlist])
-            self._gds_name = gdn
-
+        self.gds_name = ProjectValidator(self.client, gds_name)
+        
     def create(self):
         print(self.gds_name)
