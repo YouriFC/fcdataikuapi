@@ -1,8 +1,14 @@
 import dataiku
+import re
 
 def ProjectValidator(dataiku_client, gds_name): 
-    userlist = dataiku_client.list_users()
-    for entry in userlist:
-        if entry['login'].lower() == gds_name.lower():
-        return entry['login']
-    raise ValueError('Listed user is not a valid team lead user and can not perform this operation.')
+    userinfo = dataiku_client.get_auth_info()
+    assert(gds_name.lower() == userinfo['authIdentifier'].lower()), "GDS Name does not match code owner"
+    
+    checklist = []
+    for entry in userinfo['groups']:
+        if re.search(r"(lead|admin)",entry, re.IGNORECASE):
+            checklist.append(True)
+    assert(True in checklist), "This user does not have the required priviliges to perform this action."
+    
+    return
