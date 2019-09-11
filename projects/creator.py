@@ -29,7 +29,8 @@ class ProjectCreator:
 
         #Ensure correct group access to project
         #Intentionally hardcoded
-        project_permissions = new_project.get_permissions()
+        project_handler = self.__client.get_project(project_key)
+        project_permissions = project_handler.get_permissions()
         project_permissions['permissions'].append({
                                                 'group': self.devops_team,
                                                 'admin': False,
@@ -58,13 +59,25 @@ class ProjectCreator:
                                                 'writeDashboards': True,
                                                 'writeProjectContent': True
                                             })
-        new_project.set_permissions(project_permissions)                                    
+        project_handler.set_permissions(project_permissions)                                    
 
+        #Ensure correct code env & lock
+        #Also select correct container before saving changes
+        project_settings = project_handler.get_settings()
 
-        ##TODO 
+        #Code Env
+        project_settings.settings['settings']['codeEnvs']['python']['useBuiltinEnv'] = False
+        project_settings.settings['settings']['codeEnvs']['python']['envName'] = self.devops_team
+        project_settings.settings['settings']['codeEnvs']['python']['preventOverride'] = True
 
+        #Container
+        project_settings.settings['settings']['container']['containerMode'] = 'EXPLICIT_CONTAINER'
+        project_settings.settings['settings']['container']['containerConf']= self.devops_team + '_base'
 
-        #Fix project code env in settings
-        #Fix selecting correct container
+        #Done
+        project_settings.save()
+
+        print("Project creation successful.")
+
         
 
