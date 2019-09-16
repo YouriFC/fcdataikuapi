@@ -15,7 +15,7 @@ class RedshiftCreator:
         self.__client = dataiku.api_client()
 
         #Validate user is allowed to do this
-        self.gds_name = AdminValidator(self.__client, gds_name, devops_team)
+        self.gds_name = AdminValidator(self.__client, gds_name)
 
     #Private
     def _single_connection(self, target_devops_team, layer, service_account_user, service_account_pw):

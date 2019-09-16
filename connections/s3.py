@@ -15,7 +15,7 @@ class S3Creator:
         self.__client = dataiku.api_client()
 
         #Validate user is allowed to do this
-        self.gds_name = AdminValidator(self.__client, gds_name, devops_team)
+        self.gds_name = AdminValidator(self.__client, gds_name)
         
     
     def create(self, target_devops_team):

@@ -15,7 +15,7 @@ class EnvCreator:
         self.__client = dataiku.api_client()
 
         #Validate user is allowed to do this
-        self.gds_name = AdminValidator(self.__client, gds_name, devops_team)
+        self.gds_name = AdminValidator(self.__client, gds_name)
         
     def create(self, target_devops_team):
         '''
@@ -25,7 +25,7 @@ class EnvCreator:
         assert(target_devops_team.lower() in [x['name'].lower() for x in self.__client.list_groups()]), "Target devops team does not exist."
 
         payload = {
-            "pythonInterpreter": "PYTHON36",ol
+            "pythonInterpreter": "PYTHON36",
             'installCorePackages': True,
             'installJupyterSupport': True,
             'conda': False,
