@@ -44,7 +44,7 @@ class S3Creator:
                                         type='EC2',
                                         params=payload,
                                         usable_by='ALLOWED',
-                                        allowed_groups=[target_devops_team]) 
+                                        allowed_groups=[target_devops_team, target_devops_team + '_lead']) 
 
         print('S3 connection successfully created.')
        

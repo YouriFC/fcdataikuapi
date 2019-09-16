@@ -47,7 +47,7 @@ class RedshiftCreator:
                                         type='Redshift',
                                         params=payload,
                                         usable_by='ALLOWED',
-                                        allowed_groups=[target_devops_team]) 
+                                        allowed_groups=[target_devops_team, target_devops_team + '_lead']) 
 
         print("Created connection at layer {}.".format(layer))
 
@@ -63,6 +63,5 @@ class RedshiftCreator:
         assert(target_devops_team.lower() in [x['name'].lower() for x in self.__client.list_groups()]), "Target devops team does not exist."
 
         for current_layer in ['sa', 'dl', 'ds', 'dm']:
-            _single_connection(target_devops_team, current_layer, service_account_user, service_account_pw)
-
+            self._single_connection(target_devops_team, current_layer, service_account_user, service_account_pw)
 
