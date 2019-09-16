@@ -15,7 +15,7 @@ class S3Creator:
         self.__client = dataiku.api_client()
 
         #Validate user is allowed to do this
-        self.gds_name, self.devops_team = AdminValidator(self.__client, gds_name, devops_team)
+        self.gds_name = AdminValidator(self.__client, gds_name, devops_team)
         
     
     def create(self, target_devops_team):
@@ -44,5 +44,7 @@ class S3Creator:
                                         type='EC2',
                                         params=payload,
                                         usable_by='ALLOWED',
-                                        allowed_groups=target_devops_team) 
+                                        allowed_groups=[target_devops_team]) 
+
+        print('S3 connection successfully created.')
        
