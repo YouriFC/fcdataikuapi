@@ -79,11 +79,11 @@ class GroupCreator:
         lead_group_settings['mayWriteUnsafeCode']= True
         lead_group_settings['mayWriteSafeCode']= True
         lead_group_settings['mayCreateAuthenticatedConnections']= False
-        lead_group_settings['mayCreateCodeEnvs']= False
+        lead_group_settings['mayCreateCodeEnvs']= True
         lead_group_settings['mayCreateClusters']= False
         lead_group_settings['mayDevelopPlugins']= True
         lead_group_settings['mayEditLibFolders']= True
-        lead_group_settings['mayManageCodeEnvs']= True
+        lead_group_settings['mayManageCodeEnvs']= False
         lead_group_settings['mayManageClusters']= False
         lead_group_settings['mayViewIndexedHiveConnections']= False
         lead_group_settings['mayCreatePublishedAPIServices']= False
