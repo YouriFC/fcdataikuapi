@@ -7,10 +7,9 @@ class EnvCreator:
     '''
     Used by the platform admin to create pre-configured python code envs. 
     :param gds_name: Admin gds credentials. 
-    :param devops_team: Just for checking purposes. 
     '''
 
-    def __init__(self, gds_name, devops_team):
+    def __init__(self, gds_name):
         #client object for this class to use
         self.__client = dataiku.api_client()
 
