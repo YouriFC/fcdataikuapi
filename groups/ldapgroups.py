@@ -25,7 +25,7 @@ class GroupCreator:
 
         #Basic stuff; we extract everything from our base string. 
         groupname = ad_group.replace('GEN-ZZ-APP-GG-ai-', '').replace('-', '_')
-        groupdesc = "User group for project {} for department {}.".format(groupname.split('_')[1], groupname.split('_')[0])
+        groupdesc = "User group for project {} for department {}.".format(groupname.split('_')[1], groupname.split('_')[0].upper())
 
         my_base_group = self.__client.create_group(name=groupname, 
                                                 description=groupdesc, 
@@ -36,19 +36,19 @@ class GroupCreator:
 
         #Amateur hour but the API doesn't support another way
         base_group_settings['ldapGroupNames'] = ad_group
-        base_group_settings['admin'] = False,
-        base_group_settings['mayManageUDM']= False,
-        base_group_settings['mayCreateProjects']= False,
-        base_group_settings['mayWriteUnsafeCode']= True,
-        base_group_settings['mayWriteSafeCode']= True,
-        base_group_settings['mayCreateAuthenticatedConnections']= False,
-        base_group_settings['mayCreateCodeEnvs']= False,
-        base_group_settings['mayCreateClusters']= False,
-        base_group_settings['mayDevelopPlugins']= False,
-        base_group_settings['mayEditLibFolders']= False,
-        base_group_settings['mayManageCodeEnvs']= False,
-        base_group_settings['mayManageClusters']= False,
-        base_group_settings['mayViewIndexedHiveConnections']= False,
+        base_group_settings['admin'] = False
+        base_group_settings['mayManageUDM']= False
+        base_group_settings['mayCreateProjects']= False
+        base_group_settings['mayWriteUnsafeCode']= True
+        base_group_settings['mayWriteSafeCode']= True
+        base_group_settings['mayCreateAuthenticatedConnections']= False
+        base_group_settings['mayCreateCodeEnvs']= False
+        base_group_settings['mayCreateClusters']= False
+        base_group_settings['mayDevelopPlugins']= False
+        base_group_settings['mayEditLibFolders']= False
+        base_group_settings['mayManageCodeEnvs']= False
+        base_group_settings['mayManageClusters']= False
+        base_group_settings['mayViewIndexedHiveConnections']= False
         base_group_settings['mayCreatePublishedAPIServices']= False
 
         my_base_group.set_definition(base_group_settings)
@@ -63,7 +63,7 @@ class GroupCreator:
         
         #Basic stuff; we extract everything from our base string. 
         groupname = ad_group.replace('GEN-ZZ-APP-GG-ai-', '').replace('-', '_')
-        groupdesc = "Lead group for project {} for department {}.".format(groupname.split('_')[1], groupname.split('_')[0])
+        groupdesc = "Lead group for project {} for department {}.".format(groupname.split('_')[1], groupname.split('_')[0].upper())
 
         my_lead_group = self.__client.create_group(name=groupname, 
                                                 description=groupdesc, 
@@ -73,19 +73,19 @@ class GroupCreator:
 
         #Amateur hour but the API doesn't support another way
         lead_group_settings['ldapGroupNames'] = ad_group
-        lead_group_settings['admin'] = False,
-        lead_group_settings['mayManageUDM']= True,
-        lead_group_settings['mayCreateProjects']= False,
-        lead_group_settings['mayWriteUnsafeCode']= True,
-        lead_group_settings['mayWriteSafeCode']= True,
-        lead_group_settings['mayCreateAuthenticatedConnections']= False,
-        lead_group_settings['mayCreateCodeEnvs']= False,
-        lead_group_settings['mayCreateClusters']= False,
-        lead_group_settings['mayDevelopPlugins']= True,
-        lead_group_settings['mayEditLibFolders']= True,
-        lead_group_settings['mayManageCodeEnvs']= True,
-        lead_group_settings['mayManageClusters']= False,
-        lead_group_settings['mayViewIndexedHiveConnections']= False,
+        lead_group_settings['admin'] = False
+        lead_group_settings['mayManageUDM']= True
+        lead_group_settings['mayCreateProjects']= False
+        lead_group_settings['mayWriteUnsafeCode']= True
+        lead_group_settings['mayWriteSafeCode']= True
+        lead_group_settings['mayCreateAuthenticatedConnections']= False
+        lead_group_settings['mayCreateCodeEnvs']= False
+        lead_group_settings['mayCreateClusters']= False
+        lead_group_settings['mayDevelopPlugins']= True
+        lead_group_settings['mayEditLibFolders']= True
+        lead_group_settings['mayManageCodeEnvs']= True
+        lead_group_settings['mayManageClusters']= False
+        lead_group_settings['mayViewIndexedHiveConnections']= False
         lead_group_settings['mayCreatePublishedAPIServices']= False
 
         my_lead_group.set_definition(lead_group_settings)
