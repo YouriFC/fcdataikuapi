@@ -4,9 +4,11 @@ import re
 from ..validator.admin import AdminValidator
 from ..groups.ldapgroups import GroupCreator
 from ..codeenv.pythonenv import EnvCreator
+from ..codeenv.renv import REnvCreator
+
 from ..connections.s3 import S3Creator
 from ..connections.redshift import RedshiftCreator
-
+from ..projects.creator import ProjectCreator
 
 class StackCreator:
     '''
@@ -43,6 +45,8 @@ class StackCreator:
         #Code Env next
         codeenv_creator = EnvCreator(self.gds_name)
         codeenv_creator.create(self.devops_team)
+        renv_creator = REnvCreator(self.gds_name)
+        renv_creator.create(self.devops_team)
 
         #S3
         s3_creator = S3Creator(self.gds_name)
@@ -54,7 +58,10 @@ class StackCreator:
 
         #Proj
         #add this one later, especially since the projectvalidator might be an issue here. 
+        project_creator = ProjectCreator(self.gds_name, self.devops_team)
+        project_creator.create(project_key=self.devops_team, project_name=self.devops_team)
         
+        #Done
 
 
 

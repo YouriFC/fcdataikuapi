@@ -70,6 +70,11 @@ class ProjectCreator:
         project_settings.settings['settings']['codeEnvs']['python']['envName'] = self.devops_team
         project_settings.settings['settings']['codeEnvs']['python']['preventOverride'] = True
 
+        #R Env
+        project_settings.settings['settings']['codeEnvs']['r']['useBuiltinEnv'] = False
+        project_settings.settings['settings']['codeEnvs']['r']['envName'] = self.devops_team + "_r"
+        project_settings.settings['settings']['codeEnvs']['r']['preventOverride'] = True
+
         #Container
         project_settings.settings['settings']['container']['containerMode'] = 'EXPLICIT_CONTAINER'
         project_settings.settings['settings']['container']['containerConf']= self.devops_team + '_base'
