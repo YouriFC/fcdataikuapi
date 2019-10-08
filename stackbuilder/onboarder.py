@@ -4,7 +4,7 @@ import re
 from ..validator.admin import AdminValidator
 from ..groups.ldapgroups import GroupCreator
 from ..codeenv.pythonenv import EnvCreator
-from ..codeenv.renv import REnvCreator
+#from ..codeenv.renv import REnvCreator
 
 from ..connections.s3 import S3Creator
 from ..connections.redshift import RedshiftCreator
@@ -45,8 +45,8 @@ class StackCreator:
         #Code Env next
         codeenv_creator = EnvCreator(self.gds_name)
         codeenv_creator.create(self.devops_team)
-        renv_creator = REnvCreator(self.gds_name)
-        renv_creator.create(self.devops_team)
+        #renv_creator = REnvCreator(self.gds_name)
+        #renv_creator.create(self.devops_team)
 
         #S3
         s3_creator = S3Creator(self.gds_name)
