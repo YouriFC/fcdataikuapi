@@ -45,5 +45,25 @@ class S3Creator:
                                         usable_by='ALLOWED',
                                         allowed_groups=[target_devops_team, target_devops_team + '_lead']) 
 
+        #And now for the read-only share: 
+        payload = {'useDefaultCredentials': True,
+                'defaultManagedPath': '/dataiku',
+                'regionOrEndpoint': 'eu-west-1',
+                'hdfsInterface': 'S3A',
+                'encryptionMode': 'SSE_S3',
+                'chbucket': 'fcdatascience',
+                'chroot': 'shares/' + target_devops_team,
+                'switchToRegionFromBucket': True,
+                'customAWSCredentialsProviderParams': [],
+                'namingRule': {},
+                'allowWrite': False}
+        #Good to go
+
+        self.__client.create_connection(name='s3_' + target_devops_team + '_shares',
+                                        type='EC2',
+                                        params=payload,
+                                        usable_by='ALLOWED',
+                                        allowed_groups=[target_devops_team, target_devops_team + '_lead']) 
+
         print('S3 connection successfully created.')
        
