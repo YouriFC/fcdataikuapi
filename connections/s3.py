@@ -46,7 +46,7 @@ class S3Creator:
                                         allowed_groups=[target_devops_team, target_devops_team + '_lead']) 
 
         #And now for the read-only share: 
-        payload = {'useDefaultCredentials': True,
+        payload_shares = {'useDefaultCredentials': True,
                 'defaultManagedPath': '/dataiku',
                 'regionOrEndpoint': 'eu-west-1',
                 'hdfsInterface': 'S3A',
@@ -55,15 +55,21 @@ class S3Creator:
                 'chroot': 'shares/' + target_devops_team,
                 'switchToRegionFromBucket': True,
                 'customAWSCredentialsProviderParams': [],
-                'namingRule': {},
-                'allowWrite': False}
+                'namingRule': {},} #fix this allowWrite isn't enough... also fix the name
         #Good to go
 
-        self.__client.create_connection(name='s3_' + target_devops_team + '_shares',
+        new_shares_conn = self.__client.create_connection(name='s3_' + target_devops_team + '_shares',
                                         type='EC2',
-                                        params=payload,
+                                        params=payload_shares,
                                         usable_by='ALLOWED',
                                         allowed_groups=[target_devops_team, target_devops_team + '_lead']) 
 
-        print('S3 connection successfully created.')
+        env_settings = new_shares_conn.get_definition()
+        env_settings['allowWrite'] = False
+        env_settings['allowManagedDatasets'] = False
+        env_settings['allowManagedFolders'] = False
+        new_shares_conn.set_definition(env_settings)
+
+
+        print('S3 connections successfully created.')
        
