@@ -14,13 +14,16 @@ class SubProject:
 
     def __init__(self, gds_name, devops_team, apikey):
         #client object for this class to use
-        
+        self.__secondary_key = 'ouMfCYAS2Nbgq4BUUXOt3ICL3Q78wIlZ'
+
+
+
         assert(isinstance(apikey, str)), "Ensure your API key is formatted as string."
         self.__client = dataikuapi.DSSClient(host='http://10.189.40.171:8443', api_key=apikey)
    
 
         #Validate user is allowed to do this
-        self.__verification_client = dataikuapi.DSSClient(host='http://10.189.40.171:8443', api_key='ouMfCYAS2Nbgq4BUUXOt3ICL3Q78wIlZ')
+        self.__verification_client = dataikuapi.DSSClient(host='http://10.189.40.171:8443', api_key=self.__secondary_key)
         self.gds_name, self.devops_team = ProjectValidator(self.__verification_client, gds_name, devops_team)
         
 
