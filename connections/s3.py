@@ -64,11 +64,12 @@ class S3Creator:
                                         usable_by='ALLOWED',
                                         allowed_groups=[target_devops_team, target_devops_team + '_lead']) 
 
-        env_settings = new_shares_conn.get_definition()
-        env_settings['allowWrite'] = False
-        env_settings['allowManagedDatasets'] = False
-        env_settings['allowManagedFolders'] = False
-        new_shares_conn.set_definition(env_settings)
+        #For now we allow write, too - let's see how it goes
+        #env_settings = new_shares_conn.get_definition()
+        #env_settings['allowWrite'] = False
+        #env_settings['allowManagedDatasets'] = False
+        #env_settings['allowManagedFolders'] = False
+        #new_shares_conn.set_definition(env_settings)
 
 
         print('S3 connections successfully created.')

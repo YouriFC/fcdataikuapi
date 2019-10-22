@@ -37,7 +37,7 @@ class SubProject:
 
         #Ensure correct group access to project
         #Intentionally hardcoded
-        project_handler = self.__client.get_project(project_key)
+        project_handler = self.__verification_client.get_project(project_key)
         project_permissions = project_handler.get_permissions()
         project_permissions['permissions'].append({
                                                 'group': self.devops_team,
@@ -79,13 +79,13 @@ class SubProject:
         project_settings.settings['settings']['codeEnvs']['python']['preventOverride'] = True
 
         #R Env
-        #project_settings.settings['settings']['codeEnvs']['r']['useBuiltinEnv'] = False
-        #project_settings.settings['settings']['codeEnvs']['r']['envName'] = self.devops_team + "_r"
-        #project_settings.settings['settings']['codeEnvs']['r']['preventOverride'] = True
+        project_settings.settings['settings']['codeEnvs']['r']['useBuiltinEnv'] = False
+        project_settings.settings['settings']['codeEnvs']['r']['envName'] = self.devops_team + "_r"
+        project_settings.settings['settings']['codeEnvs']['r']['preventOverride'] = True
 
         #Container
         project_settings.settings['settings']['container']['containerMode'] = 'EXPLICIT_CONTAINER'
-        project_settings.settings['settings']['container']['containerConf']= self.devops_team + '_base'
+        project_settings.settings['settings']['container']['containerConf']= self.devops_team
 
         #Done
         project_settings.save()
