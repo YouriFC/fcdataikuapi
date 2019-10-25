@@ -4,7 +4,7 @@ import re
 
 def ProjectValidator(dataiku_client, gds_name, devops_team): 
     #User stuff
-    userlist = [username['login'] for username in dataiku_client.list_users()]
+    userlist = [username['login'].lower() for username in dataiku_client.list_users()]
     assert(gds_name.lower() in userlist), "GDS Name does not match code owner"
 
     userinfo = dataiku_client.get_user(gds_name).get_definition()

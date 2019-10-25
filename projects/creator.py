@@ -16,7 +16,8 @@ class ProjectCreator:
    
 
         #Validate user is allowed to do this
-        self.gds_name, self.devops_team = ProjectValidator(self.__client, gds_name, devops_team)
+        self.gds_name = gds_name
+        self.devops_team = devops_team
         
 
     def create(self, project_key, project_name):
